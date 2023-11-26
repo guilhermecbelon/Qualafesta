@@ -194,7 +194,9 @@ def TicketsListViews(request):
     user_instance = get_object_or_404(Customer, user_id=request.user.id)
     return render(request, 'customer/customer_ticketsList.html', {'ticketsorder': ticketsorder, 'user_instance':user_instance})
 
-
+class EventTicketsView(generic.DetailView):
+    model = Event
+    template_name = 'customer/customer_eventTickets.html'
 ######################################################################## Organizer Views
 def is_organizer(user):
     return user.groups.filter(name='Organizers').exists()
